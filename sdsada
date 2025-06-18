@@ -1,0 +1,83 @@
+import React, {Component} from 'react';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {TextInput, View, StyleSheet} from 'react-native';
+import PartsAll from '../screens/PartsAll';
+import PartsMagazine from '../screens/PartsMagazine';
+const Tab = createMaterialTopTabNavigator();
+
+class CustomTabNavigator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchprop: '',
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search..."
+            onChangeText={state => this.setS.log(text)}
+          />
+        </View>
+        <Tab.Navigator
+          tabBarOptions={{
+            style: {backgroundColor: '#fff'},
+            labelStyle: {fontWeight: 'bold', fontSize: 16},
+          }}>
+          <Tab.Screen {...this.props} name="Screen1" component={PartsAll} />
+          <Tab.Screen
+            {...this.props}
+            name="Screen2"
+            component={PartsMagazine}
+          />
+        </Tab.Navigator>
+      </View>
+    );
+  }
+}
+const Screen1 = () => {
+  return (
+    <View style={styles.screenContainer}>
+      {/* Your screen content for Screen1 */}
+    </View>
+  );
+};
+
+const Screen2 = () => {
+  return (
+    <View style={styles.screenContainer}>
+      {/* Your screen content for Screen2 */}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  searchInput: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
+    borderRadius: 10,
+  },
+  screenContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+export default CustomTabNavigator;
